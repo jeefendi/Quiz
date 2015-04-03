@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Admin Theme</title>
+    </h:head>
+    <h:body>
+          <div>
+         <ui:insert name="header" >
+            <ui:include src="/admin.xhtml" />
+         </ui:insert> 
+      </div>
+      <p:spacer height="40px;"/>
+        <h:form id="form1">
+            <p:growl id="growl"  showDetail="true" closable="false"/>
+            <p:panel header="Admin Category" style="width: 500px;"> 
+                <p:panelGrid id="grid" columns="2">
+                    <h:outputLabel value="Category Name: " />
+                    <p:inputText  value="#{CB.category.nom}" required="true" requiredMessage="Name is required"/>
+                    
+                    <f:facet name="footer">
+                        <h:commandButton value="Add Category" icon="ui-icon-adds" action="#{CB.doAddTheme}" update="growl" />
+                    </f:facet>
+                </p:panelGrid>
+                 </p:panel>
+                 </h:form>
+                <p:spacer height="30px;"/>
+                
+                <h:form>
+                <p:panel header="Category List  " style="width: 500px;"> 
+                <p:dataTable id="tab" value="#{CB.listCategory}" var="cat">
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value=" ID" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{cat.id}" />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{cat.id}" style="width:100%"/>  
+                            </f:facet>  
+                        </p:cellEditor> 
+                    </p:column>
+ 
+                    <p:column>
+                        <f:facet name="header">  
+                            <h:outputText value=" Name" />  
+                        </f:facet>
+                        <p:cellEditor>  
+                            <f:facet name="output">  
+                                <h:outputText value="#{cat.nom}"  />  
+                            </f:facet>  
+                            <f:facet name="input">  
+                                <p:inputText value="#{cat.nom}" style="width:100%" />  
+                            </f:facet>  
+                        </p:cellEditor>
+                    </p:column> 
+    					<p:column headerText="Update" > 
+    					 <p:column>
+     					<p:commandButton image="ui-icon ui-icon-pencil" action="#{CB.LoadCategory(cat)}" title="Update" style="margin-left:15px" />
+    					</p:column>  
+                    </p:column> 
+                    <p:column headerText="Delete" >  
+                        <p:column>
+     					<p:commandButton image="ui-icon ui-icon-trash" title="Remove"   action="#{CB.doRomveTheme(cat)}" style="margin-left:15px" update="tab" onclick="if(!confirm('vous confirmez la suppression de #{cat.nom}?')) 	return false;"/>
+    					</p:column> 
+    					</p:column>
+                </p:dataTable>
+           </p:panel>
+        </h:form>
+    </h:body>
+</html>

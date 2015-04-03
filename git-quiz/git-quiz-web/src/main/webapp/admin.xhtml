@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+<h:head>
+</h:head>
+<h:form>     
+    <p:growl id="messages" showDetail="true" />
+ 
+    <p:toolbar>
+        <f:facet name="left">
+			<p:link outcome="AdCategory" value="Category"/>
+			 <span class="ui-separator">
+             <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+            
+            <span class="ui-separator"/>
+			<p:link outcome="AdQuiz" value="Quiz"/>
+			
+			<span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+            </span>
+ 
+ 
+    
+        </f:facet>
+ 
+        <f:facet name="right">
+            <p:menuButton value="Options">
+                <p:menuitem value="Save" action="#{CB.doAddTheme}" icon="ui-icon-disk" />
+                <p:menuitem value="Update" action="#{CB.LoadCategory(cat)}" icon="ui-icon-arrowrefresh-1-w" />
+                <p:menuitem value="Delete" icon="ui-icon-close" action="#{CB.doRomveTheme(cat)}" style="margin-left:15px" onclick="if(!confirm('vous confirmez la suppression de #{cat.nom}?')) 	return false;" />
+                <p:menuitem value="Homepage" outcome="admin.xhtml" icon="ui-icon-extlink" />
+            </p:menuButton>
+        </f:facet>
+ 
+    </p:toolbar>
+</h:form>
+
+<body> 
+
+</body> 
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Edition Theme</title>
+    </h:head>
+    <h:body>
+     <div>
+         <ui:insert name="header" >
+            <ui:include src="/admin.xhtml" />
+         </ui:insert> 
+      </div>
+      <p:spacer height="40px;"/>
+        <h:form id="form1">
+            <p:panel header="Edition Category" style="width: 400px;"> 
+                <p:panelGrid columns="2">
+                    <h:outputLabel value="Category ID " />
+                    <p:inputText  value="#{CB.ide}" readonly="true"/>
+                     <h:outputLabel value="Category Name: " />
+                    <p:inputText  value="#{CB.nome}"/>
+                    
+                    <f:facet name="footer">
+                        <h:commandButton value="Valider" action="#{CB.doUpdateCategory}"/>
+                    </f:facet>
+                </p:panelGrid>
+</p:panel>
+</h:form>
+</h:body> 
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Admin Theme</title>
+    </h:head>
+    <h:body>
+          <div>
+         <ui:insert name="header" >
+            <ui:include src="/admin.xhtml" />
+         </ui:insert> 
+      </div>
+      <p:spacer height="40px;"/>
+        <h:form id="form1">
+            <p:growl id="growl"  showDetail="true" closable="false"/>
+            <p:panel header="Ajout Nouveau Quiz" style="width: 650px;"> 
+                <p:panelGrid id="grid1" columns="2" border="3">
+                    <h:outputLabel value="Quiz Name: " />
+                    <p:inputText  value="#{CB.quiz.title}" required="true" requiredMessage="Name of Quiz is required"/>
+                    <p:outputLabel value="Category Name" />
+                    <h:selectOneMenu value="Select Category">
+    				<f:selectItems value="#{CB.allCatagories}" />
+    				
+					</h:selectOneMenu>
+					
+					<h:outputLabel value="Question: " />
+					<p:inputTextarea rows="3" cols="30" value="#{CB.question.text}" required="true" requiredMessage="Question of Quiz is required"/>
+					</p:panelGrid>
+					<p:spacer height="0" />
+					<p:panelGrid columns="3">
+					<h:outputLabel value="Reponse N ° 1 : " />
+					<p:inputTextarea rows="3" cols="30" value="#{CB.rep1}" required="true" requiredMessage="Reponse of Quiz is required"/>
+					<p:inplace id="correct1" effect="none">
+		            		<f:facet name="output">
+		                		True/False
+		            		</f:facet>
+		            		<f:facet name="input">
+		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		            		</f:facet>
+		        		</p:inplace>
+					<h:outputLabel value="Reponse N° 2  : " />
+					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.rep2}" requiredMessage="Reponse of Quiz is required"/>
+                 <p:inplace id="correct2" effect="none">
+		            		<f:facet name="output">
+		                		True/False
+		            		</f:facet>
+		            		<f:facet name="input">
+		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		            		</f:facet>
+		        		</p:inplace>
+		        		
+		        	<h:outputLabel value="Reponse N° 3  : " />
+					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.rep3}" requiredMessage="Reponse of Quiz is required"/>
+                 <p:inplace id="correct3" effect="none">
+		            		<f:facet name="output">
+		                		True/False
+		            		</f:facet>
+		            		<f:facet name="input">
+		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		            		</f:facet>
+		        		</p:inplace>
+                 </p:panelGrid>
+                    <f:facet name="footer">
+                        <h:commandButton value="Submit" icon="ui-icon-newwin"  action="#{CB.doAddQuiz}"/>
+        				
+                    </f:facet>
+    				 </p:panel>
+                 </h:form>
+
+</h:body> 
+</html>

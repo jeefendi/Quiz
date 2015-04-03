@@ -20,4 +20,9 @@ public class Administrator extends User implements Serializable {
 		super();
 	}
 
+	public Administrator(String login, String password, String name) {
+		super(login, password, name);
+		// TODO Auto-generated constructor stub
+	}
+
 }
