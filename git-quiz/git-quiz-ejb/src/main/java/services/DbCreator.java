@@ -9,6 +9,7 @@ import javax.ejb.Startup;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import domain.Administrator;
 import domain.Answer;
 import domain.Category;
 import domain.Player;
@@ -84,6 +85,8 @@ public class DbCreator {
 		entityManager.persist(category2);
 		entityManager.persist(category3);
 
+		Administrator admin = new Administrator("Admin", "admin", "admin");
+		entityManager.persist(admin);
 		Player player1 = new Player("Anis", "anis", "anis");
 		Player player2 = new Player("Bechir", "bechir", "bechir");
 		Player player3 = new Player("Wassim", "wassim", "wassim");
