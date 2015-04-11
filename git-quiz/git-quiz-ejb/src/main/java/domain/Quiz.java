@@ -21,6 +21,7 @@ public class Quiz implements Serializable {
 	private Integer id;
 	private String title;
 	private List<Question> questions;
+	private List<Session> sessions;
 	private Category category;
 
 	private static final long serialVersionUID = 1L;
@@ -56,7 +57,7 @@ public class Quiz implements Serializable {
 		this.title = title;
 	}
 
-	@OneToMany(mappedBy = "quiz", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "quiz", cascade = { CascadeType.PERSIST })
 	public List<Question> getQuestions() {
 		return questions;
 	}
@@ -74,6 +75,21 @@ public class Quiz implements Serializable {
 
 	public void setCategory(Category category) {
 		this.category = category;
+	}
+
+	@OneToMany(mappedBy = "quiz", cascade = CascadeType.PERSIST)
+	public List<Session> getSessions() {
+		return sessions;
+	}
+
+	public void setSessions(List<Session> sessions) {
+		this.sessions = sessions;
+	}
+
+	@Override
+	public String toString() {
+		return "Quiz [id=" + id + ", title=" + title + ", category=" + category
+				+ "]";
 	}
 
 }

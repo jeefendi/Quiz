@@ -62,29 +62,19 @@ public class SessionId implements Serializable {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		SessionId other = (SessionId) obj;
-		if (date == null) {
-			if (other.date != null)
-				return false;
-		} else if (!date.equals(other.date))
-			return false;
-		if (idPlayer == null) {
-			if (other.idPlayer != null)
-				return false;
-		} else if (!idPlayer.equals(other.idPlayer))
-			return false;
-		if (idQuiz == null) {
-			if (other.idQuiz != null)
-				return false;
-		} else if (!idQuiz.equals(other.idQuiz))
-			return false;
-		return true;
+		if (obj instanceof SessionId)
+			if (this.date.equals(((SessionId) obj).getDate())
+					&& this.idPlayer == ((SessionId) obj).getIdPlayer()
+					&& this.idQuiz == ((SessionId) obj).getIdQuiz())
+				return true;
+		return false;
+
+	}
+
+	@Override
+	public String toString() {
+		return "SessionId [idPlayer=" + idPlayer + ", idQuiz=" + idQuiz
+				+ ", date=" + date + "]";
 	}
 
 }

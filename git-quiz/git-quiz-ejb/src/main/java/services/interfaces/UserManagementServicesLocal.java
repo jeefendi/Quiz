@@ -8,4 +8,6 @@ import domain.User;
 public interface UserManagementServicesLocal {
 	User login(String login, String password);
 
+	User findById(int id);
+
 }

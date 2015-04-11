@@ -1,4 +1,4 @@
-package mBean;
+package mBeans;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;

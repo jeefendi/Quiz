@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -77,13 +78,29 @@ public class Answer implements Serializable {
 		this.question = question;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "reponses")
 	public List<Session> getSessions() {
 		return sessions;
 	}
 
 	public void setSessions(List<Session> sessions) {
 		this.sessions = sessions;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer [id=" + id + ", correct=" + correct + ", text=" + text
+				+ "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Answer) {
+			Answer answer = (Answer) obj;
+			if (this.getId() == answer.getId())
+				return true;
+		}
+		return false;
 	}
 
 }

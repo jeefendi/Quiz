@@ -31,7 +31,7 @@ public class Player extends User implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	@OneToMany(mappedBy = "player", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "player", cascade = { CascadeType.PERSIST })
 	public List<Session> getSessions() {
 		return sessions;
 	}

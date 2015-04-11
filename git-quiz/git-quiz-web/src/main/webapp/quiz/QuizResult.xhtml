@@ -1,0 +1,22 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form id="ResultForm">
+		<h:outputText value="Total correct answers = #{rb.session.score}"
+			style="font-size:30px" />
+		<p:dataTable value="#{rb.session.reponses}" var="reponse">
+			<p:column headerText="Question">#{reponse.question.text}</p:column>
+			<p:column headerText="Your answer">#{reponse.text}</p:column>
+			<p:column headerText="Result" rendered="#{!reponse.correct}">Wrong</p:column>
+			<p:column headerText="Result" rendered="#{reponse.correct}">Correct</p:column>
+		</p:dataTable>
+		<p:commandButton action="#{rb.Replay()}" value="Retry" />
+	</h:form>
+</body>
+</html>

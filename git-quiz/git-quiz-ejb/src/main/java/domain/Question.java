@@ -57,7 +57,7 @@ public class Question implements Serializable {
 		this.text = text;
 	}
 
-	@OneToMany(mappedBy = "question", cascade = CascadeType.PERSIST)
+	@OneToMany(mappedBy = "question", cascade = { CascadeType.PERSIST })
 	public List<Answer> getAnswers() {
 		return answers;
 	}
@@ -75,6 +75,11 @@ public class Question implements Serializable {
 
 	public void setQuiz(Quiz quiz) {
 		this.quiz = quiz;
+	}
+
+	@Override
+	public String toString() {
+		return "Question [id=" + id + ", text=" + text + ", quiz=" + quiz + "]";
 	}
 
 }
