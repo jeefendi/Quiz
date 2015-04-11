@@ -43,4 +43,15 @@ public class UserManagementServices implements UserManagementServicesRemote,
 		return user;
 	}
 
+	@Override
+	public User findById(int id) {
+		User user = null;
+		try {
+			user = entityManager.find(User.class, id);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return user;
+	}
+
 }

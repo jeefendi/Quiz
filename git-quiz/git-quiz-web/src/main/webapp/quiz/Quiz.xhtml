@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+	<h:form id="QuizForm">
+		<p:dataList value="#{qb.quiz.questions}" var="question"
+			widgetVar="dataList" type="definition" paginatorPosition="top"
+			paginator="true" rows="1" rowIndexVar="row">
+
+			<h:panelGrid columns="1">
+				<h:outputText value="Question Number #  #{row+1}" />
+				<h:outputText value="#{question.text}" style="font-size:30px " />
+				<p:dataGrid columns="3" value="#{question.answers}" var="answer">
+					<p:commandButton value="#{answer.text}"
+						style="height:100px;width:300px" action="#{qb.SelectAnswer()}">
+						<f:setPropertyActionListener target="#{qb.selectedAnswer}"
+							value="#{answer}" />
+
+					</p:commandButton>
+				</p:dataGrid>
+			</h:panelGrid>
+		</p:dataList>
+	</h:form>
+</body>
+</html>

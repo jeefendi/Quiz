@@ -64,5 +64,4 @@ public class Category implements Serializable {
 		for (Quiz q : quizs)
 			q.setCategory(this);
 	}
-
 }

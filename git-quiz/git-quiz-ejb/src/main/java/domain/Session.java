@@ -2,6 +2,7 @@ package domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EmbeddedId;
@@ -28,6 +29,12 @@ public class Session implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public Session() {
+	}
+
+	public Session(Player player, Quiz quiz, Date date) {
+		this.player = player;
+		this.quiz = quiz;
+		this.sessionId = new SessionId(player.getId(), quiz.getId(), date);
 	}
 
 	public Session(Integer score, SessionId sessionId) {
@@ -88,10 +95,22 @@ public class Session implements Serializable {
 
 	public void setReponses(List<Answer> reponses) {
 		this.reponses = reponses;
-		for (Answer r : reponses) {
-			if (r.getSessions() == null)
-				r.setSessions(new ArrayList<Session>());
-			r.getSessions().add(this);
-		}
+		if (reponses != null)
+			for (Answer r : reponses) {
+				if (r.getSessions() == null)
+					r.setSessions(new ArrayList<Session>());
+				r.getSessions().add(this);
+			}
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Session) {
+			Session session = (Session) obj;
+			if (session.getSessionId().equals(this.getSessionId()))
+				return true;
+		}
+		return false;
+	}
+
 }
