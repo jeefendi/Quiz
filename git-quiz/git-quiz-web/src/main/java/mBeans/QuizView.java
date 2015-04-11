@@ -1,4 +1,4 @@
-package mBean;
+package mBeans;
 
 
 

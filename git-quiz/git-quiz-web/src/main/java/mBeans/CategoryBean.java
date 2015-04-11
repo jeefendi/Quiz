@@ -1,4 +1,4 @@
-package mBean;
+package mBeans;
 
 import java.util.ArrayList;
 import java.util.List;
