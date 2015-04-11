@@ -2,20 +2,34 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
-<h:head></h:head>
 <body>
-	<h1>welcome</h1>
-	<h:form>
-		<h:panelGrid columns="2">
-			<h:outputText value="login" />
-			<h:inputText value="#{lb.user.login}" />
-			<h:outputText value="password" />
-			<h:inputSecret value="#{lb.user.password}" />
-			<h:commandButton action="#{lb.doLogin}" value="login" />
-			<h:commandButton action="/pages/addPlayer" value="subscribe" />
-		</h:panelGrid>
-	</h:form>
+	<div
+		style="width: 350px; height: auto; margin: 50px auto 0; padding: 50px; background-color: #EEE; color: #333; border: 2px solid #C2D6FF; border-radius: 40px 0 40px 0">
+		<h2 style="margin-left: 150px">Login</h2>
+
+		<h:form style="text-align:center">
+
+			<h:panelGrid id="panel" columns="2" cellpadding="5" cellspacing="2">
+				<h:outputLabel for="username" value="Username " />
+				<p:inputText id="username" value="#{lb.user.login}" label="username" />
+				<h:outputLabel for="password" value="Password " />
+				<p:password id="password" value="#{lb.user.password}"
+					label="password" />
+				<p:commandButton
+					style="background-color:#cc7a66;border-radius:5px;border:none;padding:10px 25px;color:#FFF;text-shadow:1px 1px 1px #949494;"
+					action="#{lb.doLogin}" value="Login" />
+			</h:panelGrid>
+			<h:outputLabel value="#{lb.result}" />
+
+			<p:separator />
+			<h:commandLink action="pages/addplayer" value="Subscribe" />
+		</h:form>
+	</div>
+
+
 </body>
+
 </html>

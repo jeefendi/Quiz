@@ -12,6 +12,7 @@ import domain.User;
 @SessionScoped
 public class LoginBean {
 	private User user = new User();
+	private String result;
 
 	public User getUser() {
 		return user;
@@ -34,7 +35,15 @@ public class LoginBean {
 			else
 				return "/pages/admin";
 		}
+		result = "ERROR";
+		return "Login incorrect";
+	}
 
-		return "/notok";
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
 	}
 }

@@ -1,0 +1,42 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	<h:body>
+		<div
+			style="width: 350px; height: auto; margin: 50px auto 0; padding: 50px; background-color: #EEE; color: #333; border: 2px solid #C2D6FF; border-radius: 40px 0 40px 0">
+			<h2 style="margin-left: 120px">Registration</h2>
+			<h:form>
+				<div style="margin-left: 50px">
+					<h:panelGrid columns="2" cellpadding="5">
+						<h:outputText value="Name" />
+						<p:inputText label="Name"
+							value="#{playerManagementBean.player.name}" required="true" />
+						<h:outputText value="Login" />
+						<p:inputText label="Login"
+							value="#{playerManagementBean.player.login}" required="true" />
+					</h:panelGrid>
+
+					<h:panelGrid columns="2" id="matchGrid" cellpadding="5">
+						<h:outputLabel for="pwd1" value="Pass1" />
+						<p:password id="pwd1"
+							value="#{playerManagementBean.player.password}" match="pwd2"
+							label="Password 1" required="true" />
+						<h:outputLabel for="pwd2" value="Pass2" />
+						<p:password id="pwd2"
+							value="#{playerManagementBean.player.password}"
+							label="Password 2" required="true" />
+					</h:panelGrid>
+				</div>
+				<h:commandButton
+					style="background-color:#cc7a66;border-radius:5px;border:none;padding:10px 25px;color:#FFF;text-shadow:1px 1px 1px #949494;margin-left:300px"
+					update="matchGrid" action="#{playerManagementBean.doAddPlayer}"
+					value="Submit" icon="ui-icon-check" />
+				<p:messages style="color:red" id="messages" showDetail="true"
+					autoUpdate="true" />
+
+			</h:form>
+		</div>
+	</h:body>
+</ui:composition>

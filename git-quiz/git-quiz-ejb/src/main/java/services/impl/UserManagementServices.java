@@ -8,6 +8,7 @@ import javax.persistence.Query;
 
 import services.interfaces.UserManagementServicesLocal;
 import services.interfaces.UserManagementServicesRemote;
+import domain.Player;
 import domain.User;
 
 /**
@@ -43,6 +44,29 @@ public class UserManagementServices implements UserManagementServicesRemote,
 		return user;
 	}
 
+	public User findUserByLogin(String login) {
+		User user = null;
+		String jpql = "select u from User u where u.login =:param1";
+		Query query = entityManager.createQuery(jpql);
+		query.setParameter("param1", login);
+		try {
+			user = (User) query.getSingleResult();
+		} catch (Exception e) {
+			System.out.println("user not found ");
+		}
+		return user;
+	}
+
+	public Boolean addPlayer(Player player) {
+		Boolean b = false;
+		try {
+			entityManager.persist(player);
+			b = true;
+		} catch (Exception e) {
+		}
+		return b;
+	}
+
 	@Override
 	public User findById(int id) {
 		User user = null;
@@ -53,5 +77,4 @@ public class UserManagementServices implements UserManagementServicesRemote,
 		}
 		return user;
 	}
-
 }
