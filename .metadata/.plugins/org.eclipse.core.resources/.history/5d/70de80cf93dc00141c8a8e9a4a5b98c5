@@ -1,0 +1,119 @@
+package mBean;
+
+import java.util.List;
+
+import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+import services.impl.AdministrationManagementServices;
+import domain.Category;
+
+@ManagedBean(name = "CB")
+@SessionScoped
+public class CategoryBean {
+	
+	private Integer ide;
+	private String nome;
+
+	
+	
+	public Integer getIde() {
+		return ide;
+	}
+
+	public void setIde(Integer ide) {
+		this.ide = ide;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+	
+	private Category category = new Category();
+	
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+
+	@EJB
+	private AdministrationManagementServices administrationManagementServices;
+
+	
+	
+	
+	public CategoryBean() {
+		administrationManagementServices = new AdministrationManagementServices();
+		
+	}
+	
+	public List<Category> getListCategory() {
+        return administrationManagementServices.findAllCategory();
+        
+    }
+	
+	public String doAddTheme() {
+		
+		if(this.category.getId()!=null && this.category.getId()!=0)
+		{
+			this.updatecat();
+		}
+		else
+		{
+		administrationManagementServices.AddCategory(category.getNom());
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category", "" + category.getNom() + " Added");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+		category.setNom("");
+		
+		}
+		return "";
+	}
+	
+	public String doRomveTheme(Category Ctg) {
+	      
+		
+        administrationManagementServices.deleteCategory(Ctg.getId());
+        
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Category" ," Removed");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+        return"/AdCategory.xhtml";
+
+   }
+	
+	//load Category
+	public String LoadCategory (Category cat){
+		this.setIde(cat.getId());
+		this.setNome(cat.getNom());
+		return "/EdCategory.xhtml";
+		
+	}
+	
+	public void doNewCategory(){
+		this.category = new Category();
+	}
+
+    public void updatecat(){
+    	administrationManagementServices.updatecat(category);
+    	
+    }
+    
+    public String doUpdateCategory(){
+    	administrationManagementServices.updateCategory(ide, nome);
+        FacesMessage msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Theme " +nome+ " Changed","");
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+    	return"/AdCategory.xhtml";
+    }
+
+
+}

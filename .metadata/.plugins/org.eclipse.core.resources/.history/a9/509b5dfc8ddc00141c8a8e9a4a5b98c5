@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+    <h:head>
+        <title>Admin Theme</title>
+    </h:head>
+    <h:body>
+          <div>
+         <ui:insert name="header" >
+            <ui:include src="/admin.xhtml" />
+         </ui:insert> 
+      </div>
+      <p:spacer height="40px;"/>
+        <h:form id="form1">
+            <p:growl id="growl"  showDetail="true" closable="false"/>
+            <p:panel header="Admin Quiz" style="width: 600px;"> 
+                <p:panelGrid id="grid" columns="2">
+                    <h:outputLabel value="Quiz Name: " />
+                    <p:inputText  value="#{CB.category.nom}" required="true" requiredMessage="Name of Quiz is required"/>
+					<h:outputLabel value="Quiz Question " />
+					<p:inputTextarea rows="6" cols="33" required="true" requiredMessage="Question of Quiz is required"/>
+					<h:outputLabel value="Quiz Reponse 1 " />
+					<p:inputTextarea rows="6" cols="33" required="true" requiredMessage="Reponse of Quiz is required"/>
+					<h:outputLabel value="Quiz Reponse 2 " />
+					<p:inputTextarea rows="6" cols="33" required="true" requiredMessage="Reponse of Quiz is required"/>
+                 </p:panelGrid>
+                    <f:facet name="footer">
+                        <h:commandButton value="Add Quiz" action="#{CB.doAddTheme}" update="growl" />
+                    </f:facet>
+                
+                 </p:panel>
+                 </h:form>
+                <p:spacer height="30px;"/>
+
+</h:body> 
+</html>
