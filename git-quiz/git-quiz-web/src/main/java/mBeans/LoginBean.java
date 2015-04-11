@@ -33,7 +33,7 @@ public class LoginBean {
 			if (userFounded instanceof Player)
 				return "/pages/player";
 			else
-				return "/pages/admin";
+				return "/admin.xhtml";
 		}
 		result = "ERROR";
 		return "Login incorrect";

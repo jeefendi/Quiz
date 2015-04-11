@@ -3,18 +3,13 @@ package mBeans;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
 import javax.faces.model.SelectItem;
 
-import org.omg.CORBA.DomainManager;
-import org.primefaces.context.RequestContext;
-import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 
@@ -26,6 +21,7 @@ import domain.Quiz;
 
 @ManagedBean(name = "CB")
 @SessionScoped
+
 public class CategoryBean {
 	
 	private Integer ide;
@@ -152,9 +148,41 @@ public class CategoryBean {
 	
     
 	private TreeNode root;
+	
+	Answer answer1=new Answer();
+	Answer answer2=new Answer();
+	Answer answer3=new Answer();
+	
+	
 
 	
 	
+	public Answer getAnswer1() {
+		return answer1;
+	}
+
+	public void setAnswer1(Answer answer1) {
+		this.answer1 = answer1;
+	}
+
+	public Answer getAnswer2() {
+		return answer2;
+	}
+
+	public void setAnswer2(Answer answer2) {
+		this.answer2 = answer2;
+	}
+
+	public Answer getAnswer3() {
+		return answer3;
+	}
+
+	public void setAnswer3(Answer answer3) {
+		this.answer3 = answer3;
+	}
+
+
+
 	@EJB
 	private AdministrationManagementServices administrationManagementServices;
 
@@ -248,9 +276,9 @@ public class CategoryBean {
     	
     	
     
-    	Answer answer1=new Answer(answer.getCorrect(), rep1);
-    	Answer answer2=new Answer(!answer.getCorrect(), rep2);
-    	Answer answer3=new Answer(answer.getCorrect(), rep3);
+//    	Answer answer1=new Answer(answer.getCorrect(), rep1);
+//    	Answer answer2=new Answer(answer.getCorrect(), rep2);
+//    	Answer answer3=new Answer(answer.getCorrect(), rep3);
     	List<Answer> answers = new ArrayList<>();
     	answers.add(answer1);
     	answers.add(answer2);
@@ -276,9 +304,9 @@ public class CategoryBean {
         FacesContext.getCurrentInstance().addMessage(null, msg);
         quiz.setTitle("");
         question.setText("");
-        rep1=null;
-        rep2=null;
-        rep3=null;
+        answer1=null;
+        answer2=null;
+        answer3=null;
         return "/admin.xhtml";
         
         

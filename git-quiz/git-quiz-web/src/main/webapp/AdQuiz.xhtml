@@ -33,34 +33,34 @@
 					<p:spacer height="0" />
 					<p:panelGrid columns="3">
 					<h:outputLabel value="Reponse N ° 1 : " />
-					<p:inputTextarea rows="3" cols="30" value="#{CB.rep1}" required="true" requiredMessage="Reponse of Quiz is required"/>
+					<p:inputTextarea rows="3" cols="30" value="#{CB.answer1.text}" required="true" requiredMessage="Reponse of Quiz is required"/>
 					<p:inplace id="correct1" effect="none">
 		            		<f:facet name="output">
 		                		True/False
 		            		</f:facet>
 		            		<f:facet name="input">
-		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		                		<h:selectBooleanCheckbox value="#{CB.answer1.correct}" />
 		            		</f:facet>
 		        		</p:inplace>
 					<h:outputLabel value="Reponse N° 2  : " />
-					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.rep2}" requiredMessage="Reponse of Quiz is required"/>
+					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.answer2.text}" requiredMessage="Reponse of Quiz is required"/>
                  <p:inplace id="correct2" effect="none">
 		            		<f:facet name="output">
 		                		True/False
 		            		</f:facet>
 		            		<f:facet name="input">
-		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		                		<h:selectBooleanCheckbox value="#{CB.answer2.correct}" />
 		            		</f:facet>
 		        		</p:inplace>
 		        		
 		        	<h:outputLabel value="Reponse N° 3  : " />
-					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.rep3}" requiredMessage="Reponse of Quiz is required"/>
+					<p:inputTextarea rows="3" cols="30" required="true" value="#{CB.answer3.text}" requiredMessage="Reponse of Quiz is required"/>
                  <p:inplace id="correct3" effect="none">
 		            		<f:facet name="output">
 		                		True/False
 		            		</f:facet>
 		            		<f:facet name="input">
-		                		<h:selectBooleanCheckbox value="#{CB.answer.correct}" />
+		                		<h:selectBooleanCheckbox value="#{CB.answer3.correct}" />
 		            		</f:facet>
 		        		</p:inplace>
                  </p:panelGrid>
